@@ -6,16 +6,22 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 )
 
 var input string
 var inputLines []string
 
 func main() {
+	start := time.Now()
+
 	loadInput()
 	parseInput()
-
 	solve()
+
+	elapsed := time.Since(start)
+	fmt.Println()
+	fmt.Printf("Execution Time: %s", elapsed)
 }
 
 func loadInput() {
