@@ -31,7 +31,7 @@ func parseInput() {
 }
 
 func solve() {
-	var sum int = 0
+	var similarity int = 0
 	var leftValues []int
 	var rightValues []int
 	for _, elem := range inputLines {
@@ -52,12 +52,18 @@ func solve() {
 	})
 
 	for i := 0; i < len(leftValues); i++ {
-		var distance int = leftValues[i] - rightValues[i]
-		if distance < 0 {
-			distance *= -1
-		}
+		similarity += countOccurrences(rightValues, leftValues[i]) * leftValues[i]
 
-		sum += distance
 	}
-	fmt.Print(sum)
+	fmt.Print(similarity)
+}
+
+func countOccurrences(haystack []int, needle int) int {
+	count := 0
+	for _, value := range haystack {
+		if value == needle {
+			count++
+		}
+	}
+	return count
 }
